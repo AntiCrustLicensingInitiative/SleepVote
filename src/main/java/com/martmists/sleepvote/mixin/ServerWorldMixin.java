@@ -27,6 +27,10 @@ public class ServerWorldMixin {
     void updatePlayersSleeping(CallbackInfo ci) {
         List<ServerPlayerEntity> players = server.getPlayerManager().getPlayerList();
         players.removeIf((e)-> e.isSpectator() || (e.dimension != DimensionType.OVERWORLD));
+        if (players.isEmpty()){
+            allPlayersSleeping = false;
+            return;
+        }
         float total = players.size();
         float sleeping = players.stream().filter(PlayerEntity::isSleepingLongEnough).count();
         float treshold = Float.parseFloat(System.getProperty("sleepvote.treshold", "0.3"));
