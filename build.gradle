@@ -1,20 +1,7 @@
-buildscript {
-    ext.kotlin_version = '1.3.50'
-
-	dependencies {
-		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-	}
-    repositories {
-        mavenCentral()
-		jcenter()
-    }
-}
-
 plugins {
-	id 'fabric-loom' version '0.2.6-SNAPSHOT'
+	id 'fabric-loom' version '0.2.7-SNAPSHOT'
+	id 'maven-publish'
 }
-
-apply plugin: "idea"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
@@ -23,11 +10,14 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
+minecraft {
+}
+
 dependencies {
-	// Base dependencies
+	//to change the versions, see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 }
 
 processResources {
@@ -47,13 +37,11 @@ tasks.withType(JavaCompile) {
 	options.encoding = "UTF-8"
 }
 
-jar {
-	from "LICENSE"
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier = "sources"
+	from sourceSets.main.allSource
 }
 
-repositories {
-    mavenCentral()
-	maven {
-		url "https://dl.bintray.com/kotlin/exposed"
-	}
+jar {
+	from "LICENSE"
 }
