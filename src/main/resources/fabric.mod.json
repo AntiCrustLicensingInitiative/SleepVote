@@ -3,24 +3,25 @@
   "id": "sleepvote-crustfree",
   "version": "${version}",
   "name": "SleepVote: Crustfree",
-  "description": "A mod that skips night when at least a configured amount (default 50%) of the server is sleeping. Now without the crusty license.",
+  "description": "A mod that skips night when at least a configured amount (default 33%) of the server is sleeping. Now without the crusty license.",
   "authors": [
-    "Martmists",
-    "joaoh1"
+    "AntiCrustLicensingInitiative",
+    "Martmists"
   ],
   "contact": {
     "sources": "https://github.com/AntiCrustLicensingInitiative/SleepVote",
     "issues": "https://github.com/AntiCrustLicensingInitiative/SleepVote/issues"
   },
-  "license": "MIT",
-  "icon": "assets/essentials/icon.png",
+  "license": "LGPL-3.0-or-later",
+  "icon": "assets/sleepvote/icon.png",
   "environment": "server",
+  "entrypoints": {
+    "server": ["com.martmists.sleepvote.SleepVoteMod"]
+  },
   "mixins": [
     "sleepvote.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.4.0"
-  },
-  "requires": {
   }
 }

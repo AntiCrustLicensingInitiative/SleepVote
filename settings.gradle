@@ -1,13 +1,11 @@
 pluginManagement {
     repositories {
         jcenter()
-        mavenCentral()
         maven {
-            url 'https://maven.fabricmc.net/'
+            url = 'https://maven.fabricmc.net/'
         }
         gradlePluginPortal()
     }
 }
-
 
 rootProject.name = 'sleepvote'

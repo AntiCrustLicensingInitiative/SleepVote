@@ -1,11 +1,9 @@
 {
   "required": true,
-  "package": "org.anticrustlicensinginitiative.sleepvote.mixin",
+  "package": "com.martmists.sleepvote.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ServerWorldMixin"
-  ],
-  "server": [
   ],
   "injectors": {
     "defaultRequire": 1
