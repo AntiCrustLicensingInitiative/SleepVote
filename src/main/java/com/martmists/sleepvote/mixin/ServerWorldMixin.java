@@ -12,11 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
-
 import java.util.List;
-
-import com.martmists.sleepvote.config.SleepVoteConfig;
 
 @Mixin(ServerWorld.class)
 public class ServerWorldMixin {
@@ -27,7 +23,7 @@ public class ServerWorldMixin {
 	@Shadow
 	private MinecraftServer server;
 
-	private SleepVoteConfig config = AutoConfig.getConfigHolder(SleepVoteConfig.class).getConfig();
+	//private SleepVoteConfig config = AutoConfig.getConfigHolder(SleepVoteConfig.class).getConfig();
 
 	@Inject(method="updatePlayersSleeping()V", at=@At("RETURN"))
 	void updatePlayersSleeping(CallbackInfo ci) {
@@ -39,7 +35,7 @@ public class ServerWorldMixin {
 		}
 		double total = players.size();
 		double sleeping = players.stream().filter(PlayerEntity::isSleepingLongEnough).count();
-		double threshold = config.sleepVoteThreshold;
+		double threshold = 0.33;
 		allPlayersSleeping = (total/sleeping >= threshold);
 	}
 }
